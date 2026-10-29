@@ -7,6 +7,106 @@ from modelo import sistema, pl_unico, pddd
 st.set_page_config(page_title="Comparação PL Único x PDDD", page_icon="⚡", layout="wide")
 
 st.markdown("""
+/* =========================================================
+   ABAS DO DASHBOARD
+   ========================================================= */
+
+/* Área que contém todas as abas */
+div[data-baseweb="tab-list"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+
+    background-color: #f3f6fa !important;
+    border: 1px solid #d7e0eb !important;
+    border-radius: 12px !important;
+
+    padding: 8px !important;
+    margin-top: 18px !important;
+    margin-bottom: 24px !important;
+}
+
+/* Todas as abas, selecionadas ou não */
+button[role="tab"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+
+    padding: 10px 18px !important;
+    min-height: 42px !important;
+
+    white-space: nowrap !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease !important;
+}
+
+/* Garante que o texto dentro das abas permaneça visível */
+button[role="tab"] p {
+    color: #0f2747 !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+
+/* Aba selecionada */
+button[role="tab"][aria-selected="true"] {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+
+    border-color: #2563eb !important;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22) !important;
+}
+
+/* Texto da aba selecionada */
+button[role="tab"][aria-selected="true"] p {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Efeito ao passar o mouse */
+button[role="tab"]:hover {
+    background-color: #e8f0fe !important;
+    color: #0f2747 !important;
+    border-color: #2563eb !important;
+}
+
+/* Mantém o texto branco ao passar o mouse na aba selecionada */
+button[role="tab"][aria-selected="true"]:hover {
+    background-color: #1d4ed8 !important;
+    color: #ffffff !important;
+}
+
+button[role="tab"][aria-selected="true"]:hover p {
+    color: #ffffff !important;
+}
+
+/* Remove o sublinhado padrão da aba ativa */
+div[data-baseweb="tab-highlight"] {
+    display: none !important;
+}
+
+/* Remove a linha horizontal padrão das abas */
+div[data-baseweb="tab-border"] {
+    display: none !important;
+}
+
+/* Conteúdo mostrado abaixo das abas */
+div[data-baseweb="tab-panel"] {
+    color: #0f2747 !important;
+    padding-top: 8px !important;
+}
 <style>
 :root{color-scheme:light}.stApp{background:#fff;color:#0f2747}
 [data-testid="stSidebar"]{background:#f3f6fa;border-right:1px solid #d7e0eb}
