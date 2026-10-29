@@ -7,6 +7,7 @@ from modelo import sistema, pl_unico, pddd
 st.set_page_config(page_title="Comparação PL Único x PDDD", page_icon="⚡", layout="wide")
 
 st.markdown("""
+<style>
 /* =========================================================
    ABAS DO DASHBOARD
    ========================================================= */
