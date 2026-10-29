@@ -8,52 +8,131 @@ st.set_page_config(page_title="Comparação PL Único x PDDD", page_icon="⚡", 
 
 st.markdown("""
 <style>
-/* =========================================================
-   ABAS DO DASHBOARD
-   ========================================================= */
+/* TEMA CLARO: não altera posição, opções nem lógica do dashboard */
+:root {
+    color-scheme: light !important;
+}
 
-/* Área que contém todas as abas */
+html, body, .stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"] {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+}
+
+/* Cabeçalho do Streamlit/GitHub em fundo claro */
+[data-testid="stHeader"],
+header[data-testid="stHeader"] {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stToolbar"],
+[data-testid="stToolbar"] button,
+[data-testid="stToolbar"] a,
+[data-testid="stHeaderActionElements"],
+[data-testid="stHeaderActionElements"] button,
+[data-testid="stHeaderActionElements"] a {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+}
+
+[data-testid="stToolbar"] svg,
+[data-testid="stHeaderActionElements"] svg {
+    fill: #0f2747 !important;
+    color: #0f2747 !important;
+}
+
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+/* Barra lateral e controles claros */
+[data-testid="stSidebar"],
+[data-testid="stSidebarContent"] {
+    background-color: #f3f6fa !important;
+    border-right: 1px solid #d7e0eb !important;
+}
+
+[data-testid="stSidebar"] *,
+[data-testid="stSidebarContent"] * {
+    color: #0f2747 !important;
+}
+
+[data-testid="stNumberInput"] input,
+[data-testid="stNumberInput"] div[data-baseweb="input"],
+[data-testid="stNumberInput"] div[data-baseweb="input"] > div {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+    -webkit-text-fill-color: #0f2747 !important;
+}
+
+[data-testid="stNumberInput"] button {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* Títulos, textos, mensagens e resultados legíveis */
+h1, h2, h3, h4, h5, h6,
+p, label, span,
+[data-testid="stCaptionContainer"],
+[data-testid="stMarkdownContainer"] {
+    color: #0f2747 !important;
+}
+
+[data-testid="stMetric"] {
+    background-color: #f8fafc !important;
+    border: 1px solid #d7e0eb !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+}
+
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] *,
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] * {
+    color: #0f2747 !important;
+    opacity: 1 !important;
+}
+
+[data-testid="stAlert"] {
+    background-color: #eff6ff !important;
+    color: #0f2747 !important;
+}
+
+/* Abas: mantém posição e opções existentes */
 div[data-baseweb="tab-list"] {
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 10px !important;
-
     background-color: #f3f6fa !important;
     border: 1px solid #d7e0eb !important;
     border-radius: 12px !important;
-
     padding: 8px !important;
     margin-top: 18px !important;
     margin-bottom: 24px !important;
 }
 
-/* Todas as abas, selecionadas ou não */
 button[role="tab"] {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-
     background-color: #ffffff !important;
     color: #0f2747 !important;
-
     border: 1px solid #cbd5e1 !important;
     border-radius: 8px !important;
-
     padding: 10px 18px !important;
     min-height: 42px !important;
-
     white-space: nowrap !important;
     font-size: 14px !important;
     font-weight: 600 !important;
-
-    transition:
-        background-color 0.15s ease,
-        color 0.15s ease,
-        border-color 0.15s ease !important;
 }
 
-/* Garante que o texto dentro das abas permaneça visível */
-button[role="tab"] p {
+button[role="tab"] p,
+button[role="tab"] span,
+button[role="tab"] div {
     color: #0f2747 !important;
     opacity: 1 !important;
     font-size: 14px !important;
@@ -61,60 +140,58 @@ button[role="tab"] p {
     margin: 0 !important;
 }
 
-/* Aba selecionada */
 button[role="tab"][aria-selected="true"] {
     background-color: #2563eb !important;
     color: #ffffff !important;
-
     border-color: #2563eb !important;
     box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22) !important;
 }
 
-/* Texto da aba selecionada */
-button[role="tab"][aria-selected="true"] p {
+button[role="tab"][aria-selected="true"] p,
+button[role="tab"][aria-selected="true"] span,
+button[role="tab"][aria-selected="true"] div {
     color: #ffffff !important;
+    opacity: 1 !important;
     font-weight: 700 !important;
 }
 
-/* Efeito ao passar o mouse */
 button[role="tab"]:hover {
     background-color: #e8f0fe !important;
-    color: #0f2747 !important;
     border-color: #2563eb !important;
 }
 
-/* Mantém o texto branco ao passar o mouse na aba selecionada */
 button[role="tab"][aria-selected="true"]:hover {
     background-color: #1d4ed8 !important;
-    color: #ffffff !important;
 }
 
-button[role="tab"][aria-selected="true"]:hover p {
-    color: #ffffff !important;
-}
-
-/* Remove o sublinhado padrão da aba ativa */
-div[data-baseweb="tab-highlight"] {
-    display: none !important;
-}
-
-/* Remove a linha horizontal padrão das abas */
+div[data-baseweb="tab-highlight"],
 div[data-baseweb="tab-border"] {
     display: none !important;
 }
 
-/* Conteúdo mostrado abaixo das abas */
 div[data-baseweb="tab-panel"] {
+    background-color: #ffffff !important;
     color: #0f2747 !important;
     padding-top: 8px !important;
 }
-<style>
-:root{color-scheme:light}.stApp{background:#fff;color:#0f2747}
-[data-testid="stSidebar"]{background:#f3f6fa;border-right:1px solid #d7e0eb}
-[data-testid="stSidebar"] *{color:#0f2747}
-[data-testid="stNumberInput"] input{background:#fff!important;color:#0f2747!important;-webkit-text-fill-color:#0f2747!important}
-[data-testid="stNumberInput"] button{background:#fff!important;color:#0f2747!important}
-.block-container{max-width:1500px;padding-top:2rem}
+
+/* Expansor e JSON de resultados */
+[data-testid="stExpander"],
+[data-testid="stExpander"] details,
+[data-testid="stExpander"] summary {
+    background-color: #ffffff !important;
+    color: #0f2747 !important;
+}
+
+[data-testid="stJson"],
+[data-testid="stJson"] * {
+    color: #0f2747 !important;
+}
+
+.block-container {
+    max-width: 1500px;
+    padding-top: 2rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
