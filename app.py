@@ -206,13 +206,108 @@ def nome(s):
 
 def layout(fig, titulo, yaxis):
     fig.update_layout(
-        title=dict(text=titulo, x=0.01), paper_bgcolor="#fff", plot_bgcolor="#fff",
-        hovermode="x unified", height=520,
-        margin=dict(l=80, r=190, t=70, b=70),
-        legend=dict(orientation="v", x=1.02, xanchor="left", y=1),
-        xaxis=dict(title="Estágio mensal", dtick=1, gridcolor="#e2e8f0", automargin=True),
-        yaxis=dict(title=yaxis, gridcolor="#e2e8f0", automargin=True),
+        # Fundo do gráfico
+        paper_bgcolor="#ffffff",
+        plot_bgcolor="#ffffff",
+
+        # Cor padrão de todos os textos do Plotly
+        font=dict(
+            family="Arial, sans-serif",
+            size=13,
+            color="#0f2747"
+        ),
+
+        # Título do gráfico
+        title=dict(
+            text=titulo,
+            x=0.01,
+            xanchor="left",
+            font=dict(
+                family="Arial, sans-serif",
+                size=20,
+                color="#0f2747"
+            )
+        ),
+
+        hovermode="x unified",
+        height=520,
+
+        # Mantém as posições atuais
+        margin=dict(
+            l=80,
+            r=190,
+            t=70,
+            b=70
+        ),
+
+        # Legenda legível à direita
+        legend=dict(
+            orientation="v",
+            x=1.02,
+            xanchor="left",
+            y=1,
+            yanchor="top",
+
+            bgcolor="#ffffff",
+            bordercolor="#cbd5e1",
+            borderwidth=1,
+
+            font=dict(
+                family="Arial, sans-serif",
+                size=14,
+                color="#0f2747"
+            ),
+
+            title=dict(
+                text="Modelo",
+                font=dict(
+                    family="Arial, sans-serif",
+                    size=14,
+                    color="#0f2747"
+                )
+            )
+        ),
+
+        # Eixo horizontal
+        xaxis=dict(
+            title=dict(
+                text="Estágio mensal",
+                font=dict(
+                    size=14,
+                    color="#0f2747"
+                )
+            ),
+            tickfont=dict(
+                size=12,
+                color="#0f2747"
+            ),
+            dtick=1,
+            gridcolor="#dbe4ef",
+            linecolor="#94a3b8",
+            zerolinecolor="#94a3b8",
+            automargin=True
+        ),
+
+        # Eixo vertical
+        yaxis=dict(
+            title=dict(
+                text=yaxis,
+                font=dict(
+                    size=14,
+                    color="#0f2747"
+                )
+            ),
+            tickfont=dict(
+                size=12,
+                color="#0f2747"
+            ),
+            gridcolor="#dbe4ef",
+            linecolor="#94a3b8",
+            zerolinecolor="#94a3b8",
+            automargin=True
+        )
     )
+
     return fig
 
 
